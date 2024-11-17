@@ -9,6 +9,7 @@ using GymBooking.Data;
 using GymBooking.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 //using GymBooking.Views;
 
 
@@ -31,31 +32,10 @@ namespace GymBooking.Controllers
             return View(await _context.GymClasses.ToListAsync());
         }
 
-        public async Task<IActionResult> Testar()
-        {
-
-
-            ViewModel vm = new ViewModel
-            {
-                Name = "Hej",
-                Description = "fdfd"
-            };
-
-
-
-
-            return View(vm);
-        }
-
-
-
         // GET: GymClasses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
            
-
-
-
             //var gymClassesName = _context.GymClasses.Select(e => e.Name);
             //var gymClassesDescription = _context.GymClasses.Select(e => e.Description);
 
@@ -187,9 +167,10 @@ namespace GymBooking.Controllers
             return View(gymClass);
         }
 
-       
+
 
         // GET: GymClasses/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -212,6 +193,7 @@ namespace GymBooking.Controllers
         }
 
         // GET: GymClasses/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -263,6 +245,7 @@ namespace GymBooking.Controllers
         }
 
         // GET: GymClasses/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -300,6 +283,7 @@ namespace GymBooking.Controllers
             return _context.GymClasses.Any(e => e.Id == id);
         }
 
+        [Authorize]
         public async Task<IActionResult> BookingToggle(int? id)
         {
             if (id == null) return NotFound();

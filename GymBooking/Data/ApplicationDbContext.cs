@@ -22,7 +22,6 @@ namespace GymBooking.Data
             builder.Entity<ApplicationUserGymClass>()
                 .HasKey(a => new { a.ApplicationUserId, a.GymClassId });
         }
-        public DbSet<GymBooking.Models.ViewModel> Test { get; set; } = default!;
     }
 }
 
