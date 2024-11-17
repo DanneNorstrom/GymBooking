@@ -47,11 +47,25 @@
 
             <td>
                     @if (this.User.Identity.IsAuthenticated){
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span>|</span>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span> 
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><span>|</span>
+
+                        @if (this.User.IsInRole("Admin")){
+
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span>|</span>
+                        }
+                    
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span>
+
+                        @if (this.User.IsInRole("Admin")){
+
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><span>|</span>
+                        }
+
                         <a asp-action="BookingToggle" asp-route-id="@item.Id">Book</a>
+
                     }
+
+                   
+                    
             </td>
             
 
