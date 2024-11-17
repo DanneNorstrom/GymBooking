@@ -279,7 +279,7 @@ namespace GymBooking.Controllers
         }
 
         private bool GymClassExists(int id)
-        {
+        { 
             return _context.GymClasses.Any(e => e.Id == id);
         }
 
